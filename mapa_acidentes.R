@@ -26,7 +26,7 @@ acidentes <- rename(acidentes, "EstaçãoAnterior" = Estação)
   
 acidentes <- rename(acidentes, "EstaçãoPosterior" = `...10`)
 
-acidentes <- acidentes[2:7830,]
+acidentes <- acidentes[2:8308,]
 
 acidentes$N_acidentes <- 1
 
@@ -35,7 +35,7 @@ acidentes <- acidentes %>%
          ano = format(`Data da Ocorrência`, "%Y"))
 
 acidentes2019 <- acidentes %>% 
-  filter(ano == 2019)
+  filter(ano == 2020)
 
 base_nomes <- readxl::read_excel("Dados/nome_est.xlsx")
 base_nomes <- base_nomes[,c(2,3)]
@@ -66,7 +66,7 @@ acidentes2019 <- acidentes2019 %>%
     Incêndios = sum(Incêndio)) # fim aqui...
 
 acidentes2019e <- acidentes %>% 
-  filter(ano == 2019)
+  filter(ano == 2020)
 
 acidentes2019e <- rename(acidentes2019e, "Nome Estação A" = EstaçãoAnterior)
 acidentes2019e <- rename(acidentes2019e, "Nome Estação B" = EstaçãoPosterior)
@@ -205,7 +205,7 @@ myshp@data <- plyr::join(myshp@data, acidentes2019e, by=c('Nome Estação A', 'N
 img <- "https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Logo_ANTT.svg/1200px-Logo_ANTT.svg.png"
 
 table_html <- acidentes %>% 
-  filter(ano == 2019) %>% 
+  filter(ano == 2020) %>% 
   group_by(Ferrovia) %>% 
   summarise(
     Acidentes = sum(N_acidentes),
@@ -216,7 +216,7 @@ table_html <- acidentes %>%
 table_html <- htmlTable(table_html)
 
 table_html2 <- acidentes %>% 
-  filter(ano==2019) %>% 
+  filter(ano==2020) %>% 
   group_by(Natureza) %>% 
   summarise(
     Acidentes = sum(N_acidentes),
@@ -275,7 +275,7 @@ acidentes <- rename(acidentes, "EstaçãoAnterior" = Estação)
 
 acidentes <- rename(acidentes, "EstaçãoPosterior" = `...10`)
 
-acidentes <- acidentes[2:7830,]
+acidentes <- acidentes[2:8308,]
 
 acidentes$N_acidentes <- 1
 
@@ -284,7 +284,7 @@ acidentes <- acidentes %>%
          ano = format(`Data da Ocorrência`, "%Y"))
 
 acidentes2019UF <- acidentes %>% 
-  filter(ano == 2019)
+  filter(ano == 2020)
 
 acidentes2019UF <- acidentes2019UF %>% 
   mutate(Descarrilamento = ifelse(Natureza == 'Descarrilamento', 1, 0)) %>% 
