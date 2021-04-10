@@ -226,7 +226,7 @@ table_html2 <- acidentes %>%
 
 table_html2 <- htmlTable(table_html2)
 
-black = colorRampPalette(c('black'))
+black = colorRampPalette(c('deepskyblue', 'darkblue'))
 
 
 
@@ -237,7 +237,6 @@ black = colorRampPalette(c('black'))
 # Criação do mapa
 
 mapa <- mapview(myshp, zcol="Acidentes",
-                legend = FALSE,
                 layer.name = '',
                 color = black,
                 lwd = 4)
@@ -321,13 +320,13 @@ red = colorRampPalette(c('yellow', 'red4'))
 
 muf <- mapview(ufshp, zcol='Acidentes',
                legend=TRUE,
-               layer.name = 'Acidentes',
+               layer.name = 'Acidentes por UF',
                # cex = "Acidentes",
                col.regions = red,
                alpha = 0.6) +
   mapview(myshp, zcol="Acidentes",
-          legend = FALSE,
-          layer.name = 'Linhas',
+          legend = TRUE,
+          layer.name = 'Acidentes por Linha',
           color = black,
           lwd = 4,
           alpha=1)
@@ -351,6 +350,8 @@ muf <- muf@map %>%
                       autoCollapse = FALSE, hideMarkerOnCollapse = FALSE)) %>%
   
   groupOptions('Código Estação', zoomLevels = 10:30) 
+
+muf
 
 mapshot(muf, 'index.html', selfcontained=TRUE)
 
